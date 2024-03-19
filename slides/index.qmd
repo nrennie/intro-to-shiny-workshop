@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Shiny Apps in R"
-subtitle: ""
+subtitle: "21 March 2024"
 author: "Dr Nicola Rennie"
 format:
   LUstyle-revealjs:
@@ -35,7 +35,7 @@ The workshop will run for *1 hour*.
 
 ::: {.column}
 
-![](images/shiny.png){fig-alt="Shiny hex logo" width="80%"}
+![](images/shiny.png){fig-align="center" fig-alt="Shiny hex logo" width="70%"}
 
 :::
 
@@ -59,7 +59,8 @@ The workshop will run for *1 hour*.
 
 ::: {.column}
 
-![](images/examples.png){fig-alt="Shiny examples" width="80%"}
+![](images/examples.png){fig-alt="Shiny examples" width="90%"}
+
 See: [shiny.posit.co/r/gallery](https://shiny.posit.co/r/gallery/)
 
 :::
@@ -120,13 +121,11 @@ library(shiny)
 
 ui <- fluidPage()
 
-
 # Server ------------------------------------------------------------------
 
 server <- function(input, output) {
   
 }
-
 
 # Run app -----------------------------------------------------------------
 
