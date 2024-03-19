@@ -1,5 +1,5 @@
 ---
-title: "Workshop Title"
+title: "Introduction to Shiny Apps in R"
 subtitle: ""
 author: "Dr Nicola Rennie"
 format:
@@ -12,19 +12,84 @@ format:
 
 ## What to expect during this workshop
 
-The workshop will run for *X hours*.
+The workshop will run for *1 hour*.
 
 * Combines slides, live coding examples, quiz questions, and exercises for you to participate in.
 
 * Ask questions throughout!
 
+# What is Shiny? {background-color="#D9DBDB"}
 
+## What is Shiny?
+
+Definition and purpose of Shiny in the R ecosystem
+Key features and benefits of using Shiny for web applications
+
+## What can you build with Shiny?
+
+# Building a Shiny app {background-color="#D9DBDB"}
+
+## Packages required
+
+## Structure of a Shiny App
+
+Understanding the basic structure: UI (User Interface) and Server components
+How UI and Server interact to create dynamic web applications
+
+## Building the User Interface (UI)
+
+Introduction to Shiny UI components: Inputs, Outputs, Layouts
+Hands-on demonstration of building basic UI elements
+
+## Handling User Inputs
+
+Working with various input controls: text inputs, sliders, checkboxes, etc.
+Capturing user input and using it within your Shiny application
+
+## Exercise 1
+
+Create a ui.R
+
+## Reactive Programming with Shiny
+
+Overview of reactive programming concepts in Shiny
+Understanding reactivity: Inputs, Outputs, and Reactive Expressions
+
+## Generating Outputs
+
+Introduction to output elements: plots, tables, text, etc.
+Rendering dynamic outputs based on user inputs and reactive expressions
+
+## Exercise 2
+
+Add reactive component
+
+# Deploying a Shiny app {background-color="#D9DBDB"}
+
+## What do we mean by deployment?
+
+## *Traditional* deployment
+
+Options for deploying Shiny apps: Shiny Server, shinyapps.io, etc.
+Steps to deploy your Shiny app for public or private access
+
+## Shinylive
+
+# Best Practices and Tips {background-color="#D9DBDB"}
+
+## Best Practices and Tips
+
+Tips for efficient Shiny app development
+Common pitfalls and how to avoid them
+Resources for further learning and support
 
 ## Workshop resources
 
-* GitHub: [github.com/nrennie/X](https://github.com/nrennie/X)
+* GitHub: [github.com/nrennie/shiny-intro-workshop](https://github.com/nrennie/shiny-intro-workshop)
 
-* Slides: [nrennie.github.io/X](https://nrennie.github.io/X)
+* Slides: [nrennie.github.io/shiny-intro-workshop](https://nrennie.github.io/shiny-intro-workshop)
+
+## Questions
 
 
 ## 
@@ -36,13 +101,11 @@ The workshop will run for *X hours*.
 
 {{< fa brands linkedin >}} [nicola-rennie](https://www.linkedin.com/in/nicola-rennie/)
 
-{{< fa brands mastodon >}} [\@fosstodon.org/\@nrennie](https://fosstodon.org/deck/@nrennie)
-
 {{< fa brands github >}} [nrennie](https://github.com/nrennie)
 
 {{< fa globe >}} [nrennie.rbind.io](https://nrennie.rbind.io/)
 
-{{< fa briefcase >}} [chicas.lancaster-university.uk](https://chicas.lancaster-university.uk/)
+{{< fa envelope >}} [n.rennie@lancaster.ac.uk](mailto:n.rennie@lancaster.ac.uk)
 
 :::
 ::: {.column}
