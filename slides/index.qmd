@@ -5,6 +5,7 @@ author: "Dr Nicola Rennie"
 format:
   LUstyle-revealjs:
     self-contained: true
+    auto-stretch: false
     footer: ""
 ---
 
@@ -22,19 +23,130 @@ The workshop will run for *1 hour*.
 
 ## What is Shiny?
 
-Definition and purpose of Shiny in the R ecosystem
-Key features and benefits of using Shiny for web applications
+::: {.columns}
+
+::: {.column}
+
+* Shiny is an open source R package that provides a framework for building web applications using R.
+
+* Shiny helps you turn your analyses into interactive web applications without requiring HTML, CSS, or JavaScript knowledge.
+
+:::
+
+::: {.column}
+
+![](images/shiny.png){fig-alt="Shiny hex logo" width="80%"}
+
+:::
+
+:::
 
 ## What can you build with Shiny?
+
+::: {.columns}
+
+::: {.column}
+
+* Interacting with and exploring data
+
+* Showcasing how models work under a wide range of parameters
+
+* Developing apps as teaching aids
+
+* ...
+
+:::
+
+::: {.column}
+
+![](images/examples.png){fig-alt="Shiny examples" width="80%"}
+See: [shiny.posit.co/r/gallery](https://shiny.posit.co/r/gallery/)
+
+:::
+
+:::
 
 # Building a Shiny app {background-color="#D9DBDB"}
 
 ## Packages required
 
+Assuming that you already have R installed, you will also need the {shiny} R package:
+
+```{r}
+#| eval: false
+#| echo: true
+install.packages("shiny")
+library("shiny")
+```
+
 ## Structure of a Shiny App
 
-Understanding the basic structure: UI (User Interface) and Server components
-How UI and Server interact to create dynamic web applications
+Shiny apps come in two parts:
+
+::: {.columns}
+
+::: {.column .fragment}
+
+### UI
+
+:::
+
+::: {.column .fragment}
+
+### Server
+
+:::
+
+:::
+
+## Structure of a Shiny App
+
+* Single file app (called `app.R`)
+
+* Multiple file app (including reusable modules)
+
+* Shiny app as an R package
+
+## Structure of a Shiny App
+
+Single file app:
+
+```{r}
+#| eval: false
+#| echo: true
+library(shiny)
+
+# UI ----------------------------------------------------------------------
+
+ui <- fluidPage()
+
+
+# Server ------------------------------------------------------------------
+
+server <- function(input, output) {
+  
+}
+
+
+# Run app -----------------------------------------------------------------
+
+shiny::shinyApp(ui, server)
+
+```
+
+*Other options instead of `fluidPage()` exist.
+
+## Exercise 1
+
+* Open up your IDE of choice.
+
+* Make sure you have the {shiny} package installed.
+
+* Create an `app.R` file.
+
+* Add `ui` and `server` elements, as well as `shiny::shinyApp(ui, server)`.
+
+* Check it works.
 
 ## Building the User Interface (UI)
 
@@ -46,7 +158,7 @@ Hands-on demonstration of building basic UI elements
 Working with various input controls: text inputs, sliders, checkboxes, etc.
 Capturing user input and using it within your Shiny application
 
-## Exercise 1
+## Exercise 2
 
 Create a ui.R
 
@@ -60,7 +172,7 @@ Understanding reactivity: Inputs, Outputs, and Reactive Expressions
 Introduction to output elements: plots, tables, text, etc.
 Rendering dynamic outputs based on user inputs and reactive expressions
 
-## Exercise 2
+## Exercise 3
 
 Add reactive component
 
