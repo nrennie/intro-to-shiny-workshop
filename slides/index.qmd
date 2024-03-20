@@ -176,6 +176,7 @@ shiny::shinyApp(ui, server)
 ```{r}
 #| label: ex-1-timer
 #| echo: false
+#| eval: true
 countdown::countdown(
   minutes = 5,
   color_border = "#b20e10",
@@ -238,11 +239,7 @@ A common approach is a `sidebarPanel()` and a `mainPanel()`.
 
 * **Checkbox Input** (`checkboxInput()`): Provide binary options for users to select/deselect.
 
-* **Radio Button Input** (`radioButtons()`): Present users with exclusive choices using radio buttons.
-
 * **Select Input** (`selectInput()`): Offer users a dropdown menu to select from multiple options.
-
-* **Date Input** (`dateInput()`): Allow users to input dates using a calendar widget or date picker.
 
 * **File Input** (`fileInput()`): Enable users to upload files such as CSV, Excel, or text files.
 
@@ -256,8 +253,6 @@ A common approach is a `sidebarPanel()` and a `mainPanel()`.
 
 * **Text Output** (`textOutput()`): Show text or character strings dynamically generated based on user inputs or reactive expressions.
 
-* **Image Output** (`imageOutput()`): Render images dynamically, allowing for interactive exploration or presentation of visual content.
-
 * **UI Output** (`uiOutput()`): Dynamically generate and display UI elements based on user inputs or reactive expressions.
 
 * **Download Output** (`downloadButton()` / `downloadHandler()`): Provide functionality to download data, plots, or files generated within the Shiny application.
@@ -268,6 +263,7 @@ A common approach is a `sidebarPanel()` and a `mainPanel()`.
 ```{r}
 #| label: ex-2-timer
 #| echo: false
+#| eval: true
 countdown::countdown(
   minutes = 5,
   color_border = "#b20e10",
@@ -343,6 +339,7 @@ output$penguinsPlot <- renderPlot({
 ```{r}
 #| label: ex-3-timer
 #| echo: false
+#| eval: true
 countdown::countdown(
   minutes = 5,
   color_border = "#b20e10",
@@ -371,6 +368,8 @@ countdown::countdown(
 
 ## What do we mean by deployment?
 
+<br><br><br>
+
 ::: {.fragment}
 
 Getting the Shiny app off your laptop and out into the world!
@@ -393,7 +392,7 @@ We need a server to run the R code:
 
 ::: {.column}
 
-![](images/deploy.png){fig-alt="Screenshot of Rstudio" width="90%"}
+![](images/deploy.png){fig-align="center" fig-alt="Screenshot of Rstudio" width="90%"}
 
 :::
 
@@ -401,7 +400,7 @@ We need a server to run the R code:
 
 ## Shinylive deployment
 
-![](images/shinylive.jpg){fig-alt="Shinylive diagram" width="70%"}
+![](images/shinylive.jpg){fig-align="center" fig-alt="Shinylive diagram" width="50%"}
 
 
 ## Shinylive deployment
