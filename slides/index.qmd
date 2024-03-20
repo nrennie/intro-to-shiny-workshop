@@ -6,7 +6,10 @@ format:
   LUstyle-revealjs:
     self-contained: true
     auto-stretch: false
-    footer: ""
+    footer: "{{< fa envelope >}} [n.rennie@lancaster.ac.uk](mailto:n.rennie@lancaster.ac.uk) {{< fa globe >}} [nrennie.rbind.io](https://nrennie.rbind.io/) {{< fa brands linkedin >}} [nicola-rennie](https://www.linkedin.com/in/nicola-rennie/)"
+execute: 
+  eval: false
+  echo: true
 ---
 
 # Welcome!
@@ -15,7 +18,7 @@ format:
 
 The workshop will run for *1 hour*.
 
-* Combines slides, live coding examples, quiz questions, and exercises for you to participate in.
+* Combines slides, live coding examples, and exercises for you to participate in.
 
 * Ask questions throughout!
 
@@ -71,13 +74,32 @@ See: [shiny.posit.co/r/gallery](https://shiny.posit.co/r/gallery/)
 
 ## Packages required
 
-Assuming that you already have R installed, you will also need the {shiny} R package:
+Assuming that you already have R installed, you will also need to install the {shiny} R package:
 
 ```{r}
-#| eval: false
-#| echo: true
 install.packages("shiny")
+```
+
+and load it into R:
+
+```{r}
 library("shiny")
+```
+
+We'll also need some data so we'll install the {palmerpenguins} package:
+
+```{r}
+install.packages("palmerpenguins")
+```
+
+## Packages required
+
+...which has data about penguins!
+
+```{r}
+#| eval: true
+library("palmerpenguins")
+head(penguins)
 ```
 
 ## Structure of a Shiny App
@@ -90,11 +112,25 @@ Shiny apps come in two parts:
 
 ### UI
 
+* Defines the layout and appearance.
+
+* Contains elements such as:
+
+  * layout structures (sidebars)
+  * inputs (text boxes, sliders, buttons)
+  * outputs (plots, tables)
+
 :::
 
 ::: {.column .fragment}
 
 ### Server
+
+* Performs calculations.
+
+* Contains the logic to respond to user inputs, and update outputs.
+
+* Communicates with the UI to dynamically render outputs.
 
 :::
 
@@ -139,6 +175,7 @@ shiny::shinyApp(ui, server)
 
 ```{r}
 #| label: ex-1-timer
+#| echo: false
 countdown::countdown(
   minutes = 5,
   color_border = "#b20e10",
@@ -167,19 +204,70 @@ countdown::countdown(
 
 What's included in the UI?
 
-* App layouts
-* User inputs
-* Outputs
+* Contains elements such as:
 
-## Handling User Inputs
+  * layout structures (sidebars)
+  * inputs (text boxes, sliders, buttons)
+  * outputs (plots, tables)
+  
+## Layouts 
 
-Working with various input controls: text inputs, sliders, checkboxes, etc.
-Capturing user input and using it within your Shiny application
+There are many layouts within Shiny and its extension packages. We've already seen: 
 
+```{r}
+ui <- fluidPage()
+```
+
+::: {.fragment}
+
+Fluid pages follow a structure of rows, which contain columns.
+
+:::
+
+::: {.fragment}
+
+A common approach is a `sidebarPanel()` and a `mainPanel()`.
+
+:::
+
+## User inputs
+
+* **Text Input** (`textInput()`): Allow users to input text data using a text box.
+
+* **Numeric Input** (`numericInput()`): Enable users to input numerical values using a slider or numeric input box.
+
+* **Checkbox Input** (`checkboxInput()`): Provide binary options for users to select/deselect.
+
+* **Radio Button Input** (`radioButtons()`): Present users with exclusive choices using radio buttons.
+
+* **Select Input** (`selectInput()`): Offer users a dropdown menu to select from multiple options.
+
+* **Date Input** (`dateInput()`): Allow users to input dates using a calendar widget or date picker.
+
+* **File Input** (`fileInput()`): Enable users to upload files such as CSV, Excel, or text files.
+
+* **Action Button** (`actionButton()`): Trigger specific actions or events when clicked by the user.
+  
+## Outputs 
+
+* **Plot Output** (`plotOutput()`): Display interactive plots generated from R code.
+
+* **Table Output** (`tableOutput()`): Present data in tabular format, allowing users to explore and interact with the data.
+
+* **Text Output** (`textOutput()`): Show text or character strings dynamically generated based on user inputs or reactive expressions.
+
+* **Image Output** (`imageOutput()`): Render images dynamically, allowing for interactive exploration or presentation of visual content.
+
+* **UI Output** (`uiOutput()`): Dynamically generate and display UI elements based on user inputs or reactive expressions.
+
+* **Download Output** (`downloadButton()` / `downloadHandler()`): Provide functionality to download data, plots, or files generated within the Shiny application.
+
+  
 ## Exercise 2
 
 ```{r}
-#| label: ex-1-timer
+#| label: ex-2-timer
+#| echo: false
 countdown::countdown(
   minutes = 5,
   color_border = "#b20e10",
@@ -202,21 +290,59 @@ countdown::countdown(
 
 * Bonus: add additional user options! See: [mastering-shiny.org/basic-ui.html](https://mastering-shiny.org/basic-ui.html)
 
+## Reactive programming with Shiny
 
-## Reactive Programming with Shiny
+::: {.incremental}
 
-Overview of reactive programming concepts in Shiny
-Understanding reactivity: Inputs, Outputs, and Reactive Expressions
+* After a user changes an input, we usually want to change *something*. It might be a plot, data, other UI elements, ...
 
-## Generating Outputs
+* Let's say that after a user select a specific species, we want to create (and update) a scatterplot of bill length against bill depth for that species. 
 
-Introduction to output elements: plots, tables, text, etc.
-Rendering dynamic outputs based on user inputs and reactive expressions
+* We need to start by subsetting the data.
+
+:::
+
+## Reactive programming with Shiny
+
+We use a `reactive()` element which reacts to a user input:
+
+```{r}
+filter_data <- reactive({
+    penguins[penguins$species == input$species, ]
+  })
+```
+
+* We access the user input using `input$inputId`. 
+
+* We can use this reactive element in other server functions using `filter_data()`. Note the brackets.
+
+* See also `observe()` and `observeEvent()`.
+
+## Generating outputs
+
+We can add outputs to the UI using e.g. `plotOutput("outputId")`. But we need to make `outputId`...
+
+::: {.fragment}
+
+```{r}
+output$penguinsPlot <- renderPlot({
+    plot(filter_data()$bill_length_mm, filter_data()$bill_depth_mm)
+  })
+```
+
+* We need to assign the object to `output$`.
+
+* The `renderX` should match the `xOutput` in the UI e.g. `renderPlot` and `plotOutput`.
+
+* There are other arguments to `renderPlot()` e.g. height, so we wrap the R expression in `{}`.
+
+:::
 
 ## Exercise 3
 
 ```{r}
 #| label: ex-3-timer
+#| echo: false
 countdown::countdown(
   minutes = 5,
   color_border = "#b20e10",
@@ -231,43 +357,117 @@ countdown::countdown(
 )
 ```
 
-Add reactive component
+* Add a `reactive()` in the server to subset the data based on the user input you created.
+
+* Create a bar chart of number of penguins per species. `plotOutput()` also works for {ggplot2} plots!
+
+* Check your app runs.
+
+* Bonus: the default Shiny app styling is *fine*. Install and load the {shinythemes} package. Try adding `theme = shinytheme("cyborg")` to the UI.
+
+* Browse: [rstudio.github.io/shinythemes](https://rstudio.github.io/shinythemes/)
 
 # Deploying a Shiny app {background-color="#D9DBDB"}
 
 ## What do we mean by deployment?
 
+::: {.fragment}
+
+Getting the Shiny app off your laptop and out into the world!
+
+:::
+
 ## *Traditional* deployment
 
-Options for deploying Shiny apps: Shiny Server, shinyapps.io, etc.
-Steps to deploy your Shiny app for public or private access
+::: {.columns}
 
-## Shinylive
+::: {.column}
 
-# Best Practices and Tips {background-color="#D9DBDB"}
+We need a server to run the R code:
 
-## Best Practices and Tips
+* shinyapps.io
+* Posit Connect
+* Private server (e.g. university)
 
-Tips for efficient Shiny app development
-Common pitfalls and how to avoid them
-Resources for further learning and support
+:::
+
+::: {.column}
+
+![](images/deploy.png){fig-alt="Screenshot of Rstudio" width="90%"}
+
+:::
+
+:::
+
+## Shinylive deployment
+
+![](images/shinylive.jpg){fig-alt="Shinylive diagram" width="70%"}
+
+
+## Shinylive deployment
+
+See [posit-dev.github.io/r-shinylive](https://posit-dev.github.io/r-shinylive/).
+
+::: {.fragment}
+
+The {shinylive} package converts a standard shiny app into a shinylive app:
+
+```{r}
+install.packages("shinylive")
+```
+
+Assuming your `app.R` file is in a folder called `app`:
+
+```{r}
+shinylive::export("app", "site")
+```
+
+You can then use the files in the `site` folder to deploy it as a normal website.
+
+*not all R packages are available for shinylive.
+
+**initial load time is still quite slow.
+
+:::
+
+
+# Tips for building Shiny apps {background-color="#D9DBDB"}
+
+## Tips for building Shiny apps
+
+* Build tests using [shinytest2](https://rstudio.github.io/shinytest2/).
+
+* Building apps as packages helps with dependency management.
+
+* Learn a little bit of HTML, CSS, and Javascript.
+
+* [Modules](https://mastering-shiny.org/scaling-modules.html) are a good way to reuse bits of UI and server code across the application.
+
+* Start with pen and paper... (think about user experience!)
+
+::: {.fragmemt}
+
+:::
 
 ## Additional resources
 
-Mastering Shiny: [mastering-shiny.org/basic-ui.html](https://mastering-shiny.org/basic-ui.html)
+* Mastering Shiny: [mastering-shiny.org/basic-ui.html](https://mastering-shiny.org/basic-ui.html)
 
-shinyuieditor
+* ShinyUiEditor: [rstudio.github.io/shinyuieditor](https://rstudio.github.io/shinyuieditor/)
 
+* Shiny for Python: [shiny.posit.co/py](https://shiny.posit.co/py/)
 
+::: {.fragment}
 
-## Workshop resources
+### Workshop resources
 
 * GitHub: [github.com/nrennie/intro-to-shiny-workshop](https://github.com/nrennie/intro-to-shiny-workshop)
 
 * Slides: [nrennie.github.io/intro-to-shiny-workshop](https://nrennie.github.io/intro-to-shiny-workshop)
 
-## Questions
+:::
 
+# Questions? {background-color="#D9DBDB"}
 
 ## 
 
