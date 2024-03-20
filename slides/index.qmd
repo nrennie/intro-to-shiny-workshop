@@ -137,6 +137,22 @@ shiny::shinyApp(ui, server)
 
 ## Exercise 1
 
+```{r}
+#| label: ex-1-timer
+countdown::countdown(
+  minutes = 5,
+  color_border = "#b20e10",
+  color_text = "#b20e10",
+  color_running_text = "white",
+  color_running_background = "#b20e10",
+  color_finished_text = "#b20e10",
+  color_finished_background = "white",
+  top = 0,
+  margin = "0.5em",
+  font_size = "2em"
+)
+```
+
 * Open up your IDE of choice.
 
 * Make sure you have the {shiny} package installed.
@@ -149,8 +165,11 @@ shiny::shinyApp(ui, server)
 
 ## Building the User Interface (UI)
 
-Introduction to Shiny UI components: Inputs, Outputs, Layouts
-Hands-on demonstration of building basic UI elements
+What's included in the UI?
+
+* App layouts
+* User inputs
+* Outputs
 
 ## Handling User Inputs
 
@@ -159,7 +178,30 @@ Capturing user input and using it within your Shiny application
 
 ## Exercise 2
 
-Create a ui.R
+```{r}
+#| label: ex-1-timer
+countdown::countdown(
+  minutes = 5,
+  color_border = "#b20e10",
+  color_text = "#b20e10",
+  color_running_text = "white",
+  color_running_background = "#b20e10",
+  color_finished_text = "#b20e10",
+  color_finished_background = "white",
+  top = 0,
+  margin = "0.5em",
+  font_size = "2em"
+)
+```
+
+* Inside the `fluidPage()` function, add a title panel, sidebar, and main panel.
+
+* Add a drop down menu with `selectInput()` to choose by *Island*.
+
+* What happens if you use `checkboxGroupInput()` instead?
+
+* Bonus: add additional user options! See: [mastering-shiny.org/basic-ui.html](https://mastering-shiny.org/basic-ui.html)
+
 
 ## Reactive Programming with Shiny
 
@@ -172,6 +214,22 @@ Introduction to output elements: plots, tables, text, etc.
 Rendering dynamic outputs based on user inputs and reactive expressions
 
 ## Exercise 3
+
+```{r}
+#| label: ex-3-timer
+countdown::countdown(
+  minutes = 5,
+  color_border = "#b20e10",
+  color_text = "#b20e10",
+  color_running_text = "white",
+  color_running_background = "#b20e10",
+  color_finished_text = "#b20e10",
+  color_finished_background = "white",
+  top = 0,
+  margin = "0.5em",
+  font_size = "2em"
+)
+```
 
 Add reactive component
 
@@ -193,6 +251,14 @@ Steps to deploy your Shiny app for public or private access
 Tips for efficient Shiny app development
 Common pitfalls and how to avoid them
 Resources for further learning and support
+
+## Additional resources
+
+Mastering Shiny: [mastering-shiny.org/basic-ui.html](https://mastering-shiny.org/basic-ui.html)
+
+shinyuieditor
+
+
 
 ## Workshop resources
 
