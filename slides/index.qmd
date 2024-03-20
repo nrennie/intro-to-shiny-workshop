@@ -262,9 +262,9 @@ shinyuieditor
 
 ## Workshop resources
 
-* GitHub: [github.com/nrennie/shiny-intro-workshop](https://github.com/nrennie/shiny-intro-workshop)
+* GitHub: [github.com/nrennie/intro-to-shiny-workshop](https://github.com/nrennie/intro-to-shiny-workshop)
 
-* Slides: [nrennie.github.io/shiny-intro-workshop](https://nrennie.github.io/shiny-intro-workshop)
+* Slides: [nrennie.github.io/intro-to-shiny-workshop](https://nrennie.github.io/intro-to-shiny-workshop)
 
 ## Questions
 
