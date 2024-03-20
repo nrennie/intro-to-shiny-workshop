@@ -466,6 +466,10 @@ You can then use the files in the `site` folder to deploy it as a normal website
 
 :::
 
+## R-Ladies Lancaster
+
+![](images/event-apr24.png){fig-align="center" fig-alt="QR code" width=70%}
+
 # Questions? {background-color="#D9DBDB"}
 
 ## 
