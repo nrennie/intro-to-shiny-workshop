@@ -14,6 +14,30 @@ execute:
 
 # Welcome!
 
+## My background
+
+::: columns
+
+::: {.column}
+
+PhD in Statistics and Operational Research, modelling demand for transport services using functional data analysis.
+
+<br>
+
+Worked in data science consultancy, with a focus on health projects and software development.
+
+<br>
+
+Lecturer in Health Data Science in the [Centre for Health Informatics, Computing, and Statistics](https://chicas.lancaster-university.uk/).
+
+:::
+
+::: {.column}
+![](images/CHICASlogo.png){fig-align="center" fig-alt="CHICAS logo" width=60%}
+:::
+
+:::
+
 ## What to expect during this workshop
 
 The workshop will run for *1 hour*.
